@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Recursos/indice-de-masa-corporal (1).png</file>
+        <file>indicedenasacorporal_pol.qm</file>
+    </qresource>
+</RCC>
