@@ -1,3 +1,11 @@
+/*
+ * Examen segundo parcial
+ * Autor: Alexis Sanchez <sanchezalexis724@gmail.com>
+ * Fecha:02-22-2022
+ *
+ * Ejercicio
+ */
+
 #include "principal.h"
 #include <QTranslator>
 #include <QInputDialog>

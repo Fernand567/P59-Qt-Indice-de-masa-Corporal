@@ -2,7 +2,6 @@
 #define PRINCIPAL_H
 
 #include <QMainWindow>
-#include "datos.h"
 #include <QFile>
 #include <QFileDialog>
 #include <QTextStream>
@@ -30,14 +29,15 @@ private slots:
 private:
     Ui::Principal *ui;
     QPixmap lienzo;
-    QImage imagen;
-    double IMC;
-    int contador=0;
+    QString datosGuardar="";
+    QString ubicacion;
+    QString datos;
+    double IMC=0;
     void crearArchivo();
-    void obtenerDatos();
     void cargarDatos();
     void dibujar();
     void verificarEstado();
+    void archivoexiste();
 
 };
 #endif // PRINCIPAL_H

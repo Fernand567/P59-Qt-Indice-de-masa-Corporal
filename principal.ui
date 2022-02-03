@@ -14,7 +14,7 @@
    <string>Principal</string>
   </property>
   <property name="windowIcon">
-   <iconset>
+   <iconset resource="Recursos.qrc">
     <normaloff>:/Recursos/indice-de-masa-corporal (1).png</normaloff>:/Recursos/indice-de-masa-corporal (1).png</iconset>
   </property>
   <property name="styleSheet">
@@ -31,43 +31,37 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(0, 99, 0);</string>
+     <string notr="true">background-color: rgb(0, 99, 0);
+background-color: rgb(85, 116, 255);</string>
     </property>
     <widget class="QWidget" name="widget_7" native="true">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>0</y>
-       <width>331</width>
-       <height>101</height>
+       <x>20</x>
+       <y>10</y>
+       <width>221</width>
+       <height>71</height>
       </rect>
      </property>
-     <widget class="QLabel" name="label_13">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>20</y>
-        <width>91</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;IMC(kg/m&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; vertical-align:super;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;):&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="outIMC">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>30</y>
-        <width>131</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
+     <layout class="QFormLayout" name="formLayout">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;IMC(kg/m&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600; vertical-align:super;&quot;&gt;2&lt;/span&gt;&lt;span style=&quot; font-size:10pt; font-weight:600;&quot;&gt;):&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLineEdit" name="outIMC">
+        <property name="styleSheet">
+         <string notr="true">background-color: rgb(255, 255, 255);</string>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
     <widget class="QLabel" name="outGrafico">
      <property name="geometry">
@@ -204,6 +198,7 @@
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(115, 0, 0);
+background-color: rgb(85, 116, 255);
 </string>
     </property>
     <widget class="QWidget" name="widget_3" native="true">
@@ -216,7 +211,8 @@
       </rect>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 85, 127);</string>
+      <string notr="true">background-color: rgb(0, 85, 127);
+background-color: rgb(85, 116, 255);</string>
      </property>
      <widget class="QWidget" name="widget_5" native="true">
       <property name="geometry">
@@ -265,6 +261,9 @@
        </item>
        <item row="2" column="1">
         <widget class="QSpinBox" name="inDia">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
@@ -275,6 +274,9 @@
        </item>
        <item row="2" column="2">
         <widget class="QSpinBox" name="inMes">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
@@ -285,6 +287,9 @@
        </item>
        <item row="2" column="3">
         <widget class="QSpinBox" name="inAnio">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
          <property name="minimum">
           <number>2022</number>
          </property>
@@ -301,7 +306,11 @@
         </widget>
        </item>
        <item row="3" column="1" colspan="3">
-        <widget class="QLineEdit" name="inAltura"/>
+        <widget class="QLineEdit" name="inAltura">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
        </item>
        <item row="4" column="0">
         <widget class="QLabel" name="label_4">
@@ -311,7 +320,11 @@
         </widget>
        </item>
        <item row="4" column="1" colspan="3">
-        <widget class="QLineEdit" name="inPeso"/>
+        <widget class="QLineEdit" name="inPeso">
+         <property name="styleSheet">
+          <string notr="true">background-color: rgb(255, 255, 255);</string>
+         </property>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -336,7 +349,7 @@
        <rect>
         <x>-20</x>
         <y>270</y>
-        <width>431</width>
+        <width>441</width>
         <height>16</height>
        </rect>
       </property>
@@ -415,6 +428,9 @@
         <height>21</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -428,6 +444,9 @@
         <height>21</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -440,6 +459,9 @@
         <width>113</width>
         <height>21</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="readOnly">
        <bool>true</bool>
@@ -467,6 +489,9 @@
         <height>21</height>
        </rect>
       </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>
@@ -474,18 +499,9 @@
     </widget>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>831</width>
-     <height>20</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="Recursos.qrc"/>
+ </resources>
  <connections/>
 </ui>

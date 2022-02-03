@@ -19,19 +19,25 @@ Principal::~Principal()
 
 void Principal::crearArchivo()
 {
-    if(contador==0){
-    QFile archivo("C:/Users/alexi/Desktop/indice masa corporal/registroindice");
-    if(archivo.open(QFile::WriteOnly | QFile::Truncate)){
-    QTextStream salida(&archivo);
-    salida.operator<<("1 Mis apuntes");
-    contador++;
-        archivo.close();
-    }else{
-    //QString nombreArchivo = QFileDialog::getOpenFileName(C:/Users/alexi/Desktop/indice masa corporal/registroindice);
+
+
+   if((ui->inDia->text().toDouble()>=1 && ui->inDia->text().toDouble()<10)&&(ui->inMes->text().toDouble()>=1 && ui->inMes->text().toDouble()<10)){
+       datos= "0" +ui->inDia->text() + "/0" +ui->inMes->text()+ "/"+ui->inAnio->text()+"    "+
+              ui->inPeso->text()+" kg\n";
+   }else if(ui->inDia->text().toDouble()>=1 && ui->inDia->text().toDouble()<10){
+       datos= "0" +ui->inDia->text() + "/" +ui->inMes->text()+ "/"+ui->inAnio->text()+"    "+
+              ui->inPeso->text()+" kg\n";
+   }else if(ui->inMes->text().toDouble()>=1 && ui->inMes->text().toDouble()<10){
+       datos= ui->inDia->text() + "/0" +ui->inMes->text()+ "/"+ui->inAnio->text()+"    "+
+              ui->inPeso->text()+" kg\n";
+   }else{
+   datos= ui->inDia->text() + "/" +ui->inMes->text()+ "/"+ui->inAnio->text()+"    "+
+          ui->inPeso->text()+" kg\n";
     }
-}
 
 }
+
+
 
 void Principal::cargarDatos()
 {
@@ -42,6 +48,8 @@ void Principal::cargarDatos()
     IMC= pesso /((altura/100)*(altura/100));
     ui->outAlturaActual->setText(Altura+" cm");
     ui->outIMC->setText(QString::number(IMC,'t',2));
+    ui->outPactual->setText(QString::number(pesso,'t',2));
+
 
 }
 
@@ -96,9 +104,36 @@ void Principal::dibujar()
 
     painter.setPen(Qt::black);
     painter.setBrush(Qt::black);
-    painter.drawText(100-5, y-10, QString::number(IMC));
+    painter.drawText(250-5, y-10, QString::number(IMC));
 
-    painter.drawRoundedRect(100,y-3,5,alto + 8,3, 1.5);
+    if(IMC>15 && IMC<16){
+    painter.drawRoundedRect(70,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC<15){
+    painter.drawRoundedRect(50,y-3,5,alto + 8,3, 1.5);
+    }
+    else if(IMC>=16 && IMC<17){
+    painter.drawRoundedRect(102,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=17 && IMC<18.5){
+    painter.drawRoundedRect(127,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=18.5 && IMC<21){
+    painter.drawRoundedRect(170,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=21 && IMC<25){
+    painter.drawRoundedRect(195,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=25 && IMC<27.5){
+    painter.drawRoundedRect(245,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=27.5 && IMC<30){
+    painter.drawRoundedRect(260,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=30 && IMC<32.5){
+    painter.drawRoundedRect(305,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=32.5 && IMC<35){
+    painter.drawRoundedRect(330,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=35 && IMC<37.5){
+    painter.drawRoundedRect(373,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=37.5 && IMC<40){
+    painter.drawRoundedRect(400,y-3,5,alto + 8,3, 1.5);
+    }else if(IMC>=40){
+    painter.drawRoundedRect(410,y-3,5,alto + 8,3, 1.5);
+    }
 
     ui->outGrafico->setPixmap(lienzo);
 }
@@ -116,12 +151,73 @@ void Principal::verificarEstado()
     }
 }
 
+void Principal::archivoexiste()
+{
+    ubicacion=QDir::homePath();
+    bool existe=QFile::exists(ubicacion+"/archivoAS");
+    if(existe==false){
+        QFile archivo(ubicacion+"/archivoAS");
+
+       if(archivo.open(QFile::WriteOnly | QFile::Truncate)){
+
+           QTextStream salida(&archivo);
+           salida.operator<<(datos);
+
+        }
+    }else{
+        double minimo=100;
+        double maximo=0;
+
+            QFile archivo(ubicacion+"/archivoAS");
+        if(archivo.open(QFile::ReadOnly)){
+
+            QTextStream entrada(&archivo);
+            QString a;
+
+
+            while(entrada.atEnd()==false){
+
+                a=entrada.readLine();
+                datosGuardar+=a+"\n";
+                a.remove(0,14);
+                a.remove(2,5);
+                double min=a.toDouble();
+                double max=a.toDouble();
+                if(min<minimo){
+                    minimo=min;
+                }
+                if(max>maximo){
+                    maximo=max;
+                }
+            }
+
+                }
+        ui->outPmax->setText(QString::number(maximo)+" kg");
+        ui->outPmin->setText(QString::number(minimo)+" kg");
+            archivo.close();
+
+        if(archivo.open(QFile::WriteOnly)){
+            QTextStream salida(&archivo);
+            salida.operator<<(datosGuardar);
+            salida.operator<<(datos);
+            datosGuardar="";
+        }
+
+
+
+    }
+}
+
+
+
 void Principal::on_btnCalcular_clicked()
 {
     crearArchivo();
+    archivoexiste();
     cargarDatos();
     verificarEstado();
     dibujar();
+
 }
 
 
@@ -129,7 +225,6 @@ void Principal::on_pushButton_clicked()
 {
     QDir directorio = QDir::home();
 
-    //Agregar al path absoluto del objeto un nombre por defecto del archivo
     QString pathArchivo = directorio.absolutePath();
 
     QString nombreArchivo = QFileDialog::getSaveFileName(
@@ -141,4 +236,7 @@ void Principal::on_pushButton_clicked()
             QMessageBox::warning(this,"Guardar imagen","No se pudo guardar el archivo");
     }
 }
+
+
+
 
